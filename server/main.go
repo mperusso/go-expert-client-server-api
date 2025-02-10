@@ -26,7 +26,6 @@ type BidRepository struct {
 }
 
 func main() {
-
 	http.HandleFunc("/cotacao", cotacao)
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
@@ -35,7 +34,7 @@ func main() {
 }
 
 func NewBidRepository() *BidRepository {
-	dbConn, err := sql.Open("sqlite", "./server/cotacao.db")
+	dbConn, err := sql.Open("sqlite", "cotacao.db")
 	if err != nil {
 		panic(err)
 	}
