@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -31,6 +32,9 @@ func main() {
 	}
 	defer res.Body.Close()
 	body, err := io.ReadAll(res.Body)
+	if res.StatusCode != 200 {
+		panic(fmt.Errorf("Error getting exchange rate: %s", string(body)))
+	}
 	if err != nil {
 		panic(err)
 	}
